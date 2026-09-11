@@ -138,174 +138,126 @@ const ARROW_LINE_H  = 56   // px — length of the shaft
 const ARROW_W       = 20   // px — full arrowhead width (each wing = half)
 const ARROW_HEAD_H  = 10   // px — arrowhead height
 
+// ─── Scroll Indicator ────────────────────────────────────────────────────────
+
 const ScrollIndicator: React.FC = () => {
   const reduced = useReducedMotion()
 
-  // Total SVG height: shaft + arrowhead + a little breathing room
-  const svgH = ARROW_LINE_H + ARROW_HEAD_H + 4
-
-  // The three chevrons animate with a waterfall stagger
-  const chevrons = [0, 1, 2]
-
   return (
     <motion.div
-      className="mt-12 flex flex-col items-center gap-0 select-none pointer-events-none"
+      className="mt-8 flex flex-col items-center select-none pointer-events-none"
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 2.5, duration: 1, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ delay: 1.6, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
       aria-label="Scroll down"
       role="presentation"
     >
       {/* ── SCROLL label ── */}
-      <motion.span
-        className="font-body font-bold tracking-[0.38em] uppercase mb-4"
-        style={{ fontSize: '0.5rem', color: 'rgba(36,24,18,0.32)' }}
-        animate={reduced ? {} : { opacity: [0.32, 0.65, 0.32] }}
-        transition={{ duration: 2.6, repeat: Infinity, ease: 'easeInOut' }}
-      >
-        Scroll
-      </motion.span>
+      <div className="flex items-center gap-2 mb-2">
+        <span className="w-1.5 h-1.5 rotate-45 bg-gold" aria-hidden="true" />
+        <motion.span
+          className="font-body font-bold tracking-[0.35em] uppercase text-navy"
+          style={{ fontSize: '0.62rem' }}
+          animate={reduced ? {} : { opacity: [0.75, 1, 0.75] }}
+          transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
+        >
+          Scroll
+        </motion.span>
+        <span className="w-1.5 h-1.5 rotate-45 bg-gold" aria-hidden="true" />
+      </div>
 
-      {/* ── Main arrow SVG ── */}
-      <div className="relative" style={{ width: ARROW_W + 16, height: svgH }}>
+      {/* ── Animated Gold & Navy Arrow ── */}
+      <motion.div
+        className="relative flex flex-col items-center"
+        animate={reduced ? {} : { y: [0, 6, 0] }}
+        transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+      >
         <svg
-          width={ARROW_W + 16}
-          height={svgH}
-          viewBox={`0 0 ${ARROW_W + 16} ${svgH}`}
+          width="26"
+          height="48"
+          viewBox="0 0 26 48"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           aria-hidden="true"
-          overflow="visible"
+          className="overflow-visible"
         >
-          {/* ── Static shaft + head (dim baseline) ── */}
-          {/* Shaft */}
+          {/* Static track */}
           <line
-            x1={(ARROW_W + 16) / 2}
-            y1={0}
-            x2={(ARROW_W + 16) / 2}
-            y2={ARROW_LINE_H}
-            stroke="rgba(198,146,46,0.18)"
-            strokeWidth="1"
+            x1="13"
+            y1="2"
+            x2="13"
+            y2="34"
+            stroke="#C6922E"
+            strokeWidth="1.8"
             strokeLinecap="round"
+            strokeOpacity="0.4"
           />
-          {/* Arrowhead */}
+
+          {/* Animated drawing shaft */}
+          {!reduced && (
+            <motion.line
+              x1="13"
+              y1="2"
+              x2="13"
+              y2="34"
+              stroke="#C6922E"
+              strokeWidth="2.2"
+              strokeLinecap="round"
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={{
+                pathLength: [0, 1, 1, 0],
+                opacity: [0.3, 1, 1, 0],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: 'easeInOut',
+                times: [0, 0.5, 0.8, 1],
+              }}
+            />
+          )}
+
+          {/* Traveling gold pulse dot */}
+          {!reduced && (
+            <motion.circle
+              cx="13"
+              cy="4"
+              r="3"
+              fill="#C6922E"
+              animate={{
+                cy: [4, 32, 32],
+                opacity: [0, 1, 0],
+                r: [2.5, 3.5, 1],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: 'easeInOut',
+                times: [0, 0.65, 1],
+              }}
+            />
+          )}
+
+          {/* Main Gold Arrowhead */}
           <path
-            d={`
-              M ${(ARROW_W + 16) / 2 - ARROW_W / 2} ${ARROW_LINE_H}
-              L ${(ARROW_W + 16) / 2}               ${ARROW_LINE_H + ARROW_HEAD_H}
-              L ${(ARROW_W + 16) / 2 + ARROW_W / 2} ${ARROW_LINE_H}
-            `}
-            stroke="rgba(198,146,46,0.18)"
-            strokeWidth="1"
+            d="M7 28L13 36L19 28"
+            stroke="#C6922E"
+            strokeWidth="2.2"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
 
-          {/* ── Animated bright shaft — draws from top to arrowhead tip ── */}
-          {!reduced && (
-            <>
-              <motion.line
-                x1={(ARROW_W + 16) / 2}
-                y1={0}
-                x2={(ARROW_W + 16) / 2}
-                y2={ARROW_LINE_H}
-                stroke="rgba(198,146,46,0.75)"
-                strokeWidth="1.4"
-                strokeLinecap="round"
-                /* pathLength trick: draw the line top→bottom then vanish */
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={{ pathLength: [0, 1, 1, 0], opacity: [0, 1, 1, 0] }}
-                transition={{
-                  duration: 1.8,
-                  repeat: Infinity,
-                  repeatDelay: 0.4,
-                  times: [0, 0.45, 0.7, 1],
-                  ease: 'easeInOut',
-                }}
-              />
-
-              {/* Animated arrowhead — fades in after shaft reaches bottom */}
-              <motion.path
-                d={`
-                  M ${(ARROW_W + 16) / 2 - ARROW_W / 2} ${ARROW_LINE_H}
-                  L ${(ARROW_W + 16) / 2}               ${ARROW_LINE_H + ARROW_HEAD_H}
-                  L ${(ARROW_W + 16) / 2 + ARROW_W / 2} ${ARROW_LINE_H}
-                `}
-                stroke="rgba(198,146,46,0.85)"
-                strokeWidth="1.4"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={{ pathLength: [0, 0, 1, 0], opacity: [0, 0, 1, 0] }}
-                transition={{
-                  duration: 1.8,
-                  repeat: Infinity,
-                  repeatDelay: 0.4,
-                  times: [0, 0.42, 0.72, 1],
-                  ease: 'easeInOut',
-                }}
-              />
-
-              {/* Travelling glow dot — rides down the shaft */}
-              <motion.circle
-                cx={(ARROW_W + 16) / 2}
-                cy={0}
-                r={2.5}
-                fill="rgba(240,217,138,0.9)"
-                initial={{ cy: 0, opacity: 0, r: 2.5 }}
-                animate={{
-                  cy:      [2,  ARROW_LINE_H + ARROW_HEAD_H * 0.6, ARROW_LINE_H + ARROW_HEAD_H * 0.6],
-                  opacity: [0,  1,   0],
-                  r:       [2.5, 1.5, 0],
-                }}
-                transition={{
-                  duration: 1.8,
-                  repeat: Infinity,
-                  repeatDelay: 0.4,
-                  times: [0, 0.68, 1],
-                  ease: [0.4, 0, 0.6, 1],
-                }}
-              />
-            </>
-          )}
+          {/* Secondary Navy Chevron */}
+          <path
+            d="M8 36L13 42L18 36"
+            stroke="#0D315A"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            opacity="0.85"
+          />
         </svg>
-      </div>
-
-      {/* ── Staggered chevron cascade below the arrow ── */}
-      <div className="flex flex-col items-center mt-1" style={{ gap: 1 }} aria-hidden="true">
-        {chevrons.map((i) => (
-          <motion.svg
-            key={i}
-            width="18"
-            height="9"
-            viewBox="0 0 18 9"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            animate={reduced
-              ? {}
-              : {
-                  opacity: [0, 0.8, 0],
-                  y:       [0, 5,   0],
-                }
-            }
-            transition={{
-              duration: 1.8,
-              repeat: Infinity,
-              repeatDelay: 0.4,
-              ease: 'easeInOut',
-              delay: 0.18 * i,      // waterfall stagger
-            }}
-          >
-            <path
-              d="M 2 2 L 9 7 L 16 2"
-              stroke="rgba(198,146,46,0.7)"
-              strokeWidth="1.4"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </motion.svg>
-        ))}
-      </div>
+      </motion.div>
     </motion.div>
   )
 }
