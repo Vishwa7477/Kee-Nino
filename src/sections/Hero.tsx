@@ -337,20 +337,20 @@ export const Hero: React.FC = () => {
         />
       </motion.div>
 
-      {/* Temple silhouette — parallax bg */}
+      {/* Temple silhouette — anchored flush to the bottom ending */}
       <motion.div
-        className="absolute bottom-0 left-0 right-0 pointer-events-none z-0"
-        style={{ y: reduced ? 0 : bgY }}
+        className="absolute bottom-0 left-0 right-0 pointer-events-none z-0 flex items-end justify-center overflow-hidden"
+        style={{ height: 'clamp(65px, 12vh, 120px)', y: reduced ? 0 : bgY }}
         aria-hidden="true"
       >
-        <TempleSilhouette opacity={0.055} className="w-full" />
+        <TempleSilhouette opacity={0.06} className="w-full h-full object-cover object-bottom" />
       </motion.div>
 
       {/* Floral corners */}
-      <div className="absolute left-0 bottom-0 w-40 md:w-64 lg:w-80 pointer-events-none z-10" aria-hidden="true">
+      <div className="absolute left-0 bottom-0 w-36 md:w-60 lg:w-72 pointer-events-none z-10" aria-hidden="true">
         <FloralCornerLeft opacity={0.7} />
       </div>
-      <div className="absolute right-0 bottom-0 w-40 md:w-64 lg:w-80 pointer-events-none z-10" aria-hidden="true">
+      <div className="absolute right-0 bottom-0 w-36 md:w-60 lg:w-72 pointer-events-none z-10" aria-hidden="true">
         <FloralCornerRight opacity={0.7} />
       </div>
       <div

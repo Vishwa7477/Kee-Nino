@@ -168,7 +168,7 @@ export const FloralSprig: React.FC<FloralProps & { horizontal?: boolean }> = ({
  */
 export const TempleSilhouette: React.FC<FloralProps> = ({
   className = '',
-  opacity = 0.06,
+  opacity = 0.065,
   color = '#0D315A',
 }) => (
   <svg
