@@ -5,7 +5,6 @@ import './styles/globals.css'
 
 // Components
 import { Navigation } from './components/Navigation'
-import { MusicButton } from './components/MusicButton'
 
 // Sections
 import { Hero } from './sections/Hero'
@@ -21,9 +20,8 @@ import { FinalSection } from './sections/FinalSection'
 const App: React.FC = () => {
   return (
     <div className="relative w-full overflow-x-hidden">
-      {/* Persistent Navigation & Music */}
+      {/* Persistent Navigation */}
       <Navigation />
-      <MusicButton canAutoplay={true} />
 
       {/* ── Main Wedding Sections ── */}
       <main id="main-content">
