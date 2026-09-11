@@ -235,44 +235,49 @@ export const DogSection: React.FC = () => {
             transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
           >
             {/* Paw badge */}
-            <div className="flex items-center gap-2 px-4 py-2 border border-gold/60 bg-gold/10 rounded-sm shadow-xs">
-              <PawPrint size={14} color="#A87822" />
-              <span className="font-body font-bold text-[0.68rem] tracking-[0.24em] uppercase text-gold">
+            <div className="flex items-center gap-2 px-4 py-2 border border-gold/70 bg-gold/15 rounded-sm shadow-xs">
+              <PawPrint size={15} color="#9E7020" />
+              <span className="font-body font-extrabold text-[0.72rem] tracking-[0.25em] uppercase text-gold">
                 {COPY.dog.badge}
               </span>
             </div>
 
             <p
               className="font-display italic text-navy font-bold leading-relaxed"
-              style={{ fontSize: 'clamp(1.1rem, 3.5vw, 1.35rem)', opacity: 0.92 }}
+              style={{ fontSize: 'clamp(1.15rem, 3.8vw, 1.4rem)', color: '#0D315A' }}
             >
               {COPY.dog.subtext}
             </p>
 
             {/* Bhairav's name */}
-            <div className="flex flex-col items-center md:items-start gap-1">
+            <div className="flex flex-col items-center md:items-start gap-1.5">
               <p
-                className="font-script text-gold"
-                style={{ fontSize: 'clamp(2.4rem, 8vw, 3.4rem)', lineHeight: 1.1, color: '#C6922E' }}
+                className="font-script"
+                style={{
+                  fontSize: 'clamp(2.8rem, 9vw, 3.8rem)',
+                  lineHeight: 1.1,
+                  color: '#B88A3B',
+                  textShadow: '0.3px 0 0 #B88A3B, -0.3px 0 0 #B88A3B, 0 0.3px 0 #B88A3B, 0 -0.3px 0 #B88A3B',
+                }}
               >
                 Bhairav
               </p>
               <p
-                className="font-body font-bold tracking-[0.22em] uppercase text-brown/75"
-                style={{ fontSize: 'clamp(0.65rem, 1.8vw, 0.75rem)' }}
+                className="font-body font-extrabold tracking-[0.24em] uppercase text-navy"
+                style={{ fontSize: 'clamp(0.72rem, 2vw, 0.85rem)', color: '#0D315A' }}
               >
                 With Bhairav's Full Approval
               </p>
             </div>
 
             {/* Paw prints decoration */}
-            <div className="flex gap-3 mt-2" aria-hidden="true">
+            <div className="flex gap-3.5 mt-2" aria-hidden="true">
               {[0, 1, 2, 3].map((i) => (
                 <motion.div
                   key={i}
                   animate={!reduced ? {
                     y: [0, -4, 0],
-                    opacity: [0.5, 0.9, 0.5],
+                    opacity: [0.6, 1, 0.6],
                   } : {}}
                   transition={{
                     duration: 1.5,
@@ -281,18 +286,18 @@ export const DogSection: React.FC = () => {
                     delay: i * 0.25,
                   }}
                 >
-                  <PawPrint size={18} color="#C6922E" />
+                  <PawPrint size={20} color="#B88A3B" />
                 </motion.div>
               ))}
             </div>
 
-            <div aria-hidden="true">
+            <div aria-hidden="true" className="w-full max-w-xs">
               <OrnamentDivider size="sm" />
             </div>
 
             <p
-              className="font-body font-bold text-brown/75 tracking-[0.22em] uppercase"
-              style={{ fontSize: 'clamp(0.65rem, 1.8vw, 0.75rem)' }}
+              className="font-body font-extrabold text-navy tracking-[0.24em] uppercase"
+              style={{ fontSize: 'clamp(0.72rem, 2vw, 0.85rem)', color: '#0D315A' }}
             >
               The Wedding's Most Distinguished Guest
             </p>
