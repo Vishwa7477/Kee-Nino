@@ -235,16 +235,16 @@ export const DogSection: React.FC = () => {
             transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
           >
             {/* Paw badge */}
-            <div className="flex items-center gap-2 px-4 py-2 border border-gold/30 bg-gold/5 rounded-sm">
-              <PawPrint size={14} color="#C6922E" />
-              <span className="font-body font-bold text-[0.6rem] tracking-[0.22em] uppercase text-gold">
+            <div className="flex items-center gap-2 px-4 py-2 border border-gold/60 bg-gold/10 rounded-sm shadow-xs">
+              <PawPrint size={14} color="#A87822" />
+              <span className="font-body font-bold text-[0.68rem] tracking-[0.24em] uppercase text-gold">
                 {COPY.dog.badge}
               </span>
             </div>
 
             <p
-              className="font-display italic text-navy/65 leading-relaxed"
-              style={{ fontSize: 'clamp(1rem, 3vw, 1.25rem)' }}
+              className="font-display italic text-navy font-bold leading-relaxed"
+              style={{ fontSize: 'clamp(1.1rem, 3.5vw, 1.35rem)', opacity: 0.92 }}
             >
               {COPY.dog.subtext}
             </p>
@@ -253,13 +253,13 @@ export const DogSection: React.FC = () => {
             <div className="flex flex-col items-center md:items-start gap-1">
               <p
                 className="font-script text-gold"
-                style={{ fontSize: 'clamp(2rem, 7vw, 2.8rem)', lineHeight: 1.1 }}
+                style={{ fontSize: 'clamp(2.4rem, 8vw, 3.4rem)', lineHeight: 1.1, color: '#C6922E' }}
               >
                 Bhairav
               </p>
               <p
-                className="font-body tracking-[0.2em] uppercase text-brown/40"
-                style={{ fontSize: 'clamp(0.55rem, 1.5vw, 0.62rem)' }}
+                className="font-body font-bold tracking-[0.22em] uppercase text-brown/75"
+                style={{ fontSize: 'clamp(0.65rem, 1.8vw, 0.75rem)' }}
               >
                 With Bhairav's Full Approval
               </p>
@@ -272,7 +272,7 @@ export const DogSection: React.FC = () => {
                   key={i}
                   animate={!reduced ? {
                     y: [0, -4, 0],
-                    opacity: [0.4, 0.8, 0.4],
+                    opacity: [0.5, 0.9, 0.5],
                   } : {}}
                   transition={{
                     duration: 1.5,
@@ -291,8 +291,8 @@ export const DogSection: React.FC = () => {
             </div>
 
             <p
-              className="font-body text-brown/40 tracking-[0.18em] uppercase"
-              style={{ fontSize: 'clamp(0.55rem, 1.5vw, 0.62rem)' }}
+              className="font-body font-bold text-brown/75 tracking-[0.22em] uppercase"
+              style={{ fontSize: 'clamp(0.65rem, 1.8vw, 0.75rem)' }}
             >
               The Wedding's Most Distinguished Guest
             </p>

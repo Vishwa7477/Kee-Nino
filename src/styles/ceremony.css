@@ -80,9 +80,9 @@
 
 .csec-eyebrow {
   font-family: 'Lato', sans-serif;
-  font-size: 8.5px;
-  font-weight: 700;
-  letter-spacing: 0.3em;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--c-gold-dk);
   margin-bottom: 9px;
@@ -91,17 +91,17 @@
 /* VK monogram — deliberately small, NOT page-dominant */
 .csec-monogram {
   font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(36px, 9.5vw, 44px);
-  font-weight: 400;
+  font-size: clamp(38px, 10vw, 46px);
+  font-weight: 600;
   line-height: 1;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   color: var(--c-navy);
 }
 
 .csec-together {
   font-family: 'Lato', sans-serif;
-  font-size: 8px;
-  font-weight: 400;
+  font-size: 9px;
+  font-weight: 800;
   letter-spacing: 0.34em;
   text-transform: uppercase;
   color: var(--c-gold);
