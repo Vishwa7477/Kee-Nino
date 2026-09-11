@@ -113,13 +113,6 @@ export const familyLoveMomentsPhotos: PhotoItem[] = [
     aspect: 'landscape',
   },
   {
-    src: '/photos/bride-family-2.webp',
-    alt: "Keerthana's family portrait on the wedding stage",
-    caption: "Bride's Family",
-    placeholder: false,
-    aspect: 'landscape',
-  },
-  {
     src: '/photos/groom-family.webp',
     alt: "Groom's extended family on the wedding stage with Vasanth and Keerthana",
     caption: "Groom's Family",
