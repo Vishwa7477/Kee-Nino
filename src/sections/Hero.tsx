@@ -152,30 +152,35 @@ const ScrollIndicator: React.FC = () => {
       aria-label="Scroll down"
       role="presentation"
     >
-      {/* ── SCROLL label ── */}
-      <div className="flex items-center gap-2 mb-2">
-        <span className="w-1.5 h-1.5 rotate-45 bg-gold" aria-hidden="true" />
+      {/* ── SCROLL label in bold gold ── */}
+      <div className="flex items-center gap-2.5 mb-2.5">
+        <span className="w-2 h-2 rotate-45 bg-gold shadow-sm" aria-hidden="true" />
         <motion.span
-          className="font-body font-bold tracking-[0.35em] uppercase text-navy"
-          style={{ fontSize: '0.62rem' }}
-          animate={reduced ? {} : { opacity: [0.75, 1, 0.75] }}
-          transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
+          className="font-body tracking-[0.35em] uppercase"
+          style={{
+            fontSize: '0.72rem',
+            fontWeight: 800,
+            color: '#B88A3B',
+            textShadow: '0 1px 2px rgba(184,138,59,0.15)',
+          }}
+          animate={reduced ? {} : { opacity: [0.85, 1, 0.85] }}
+          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
         >
           Scroll
         </motion.span>
-        <span className="w-1.5 h-1.5 rotate-45 bg-gold" aria-hidden="true" />
+        <span className="w-2 h-2 rotate-45 bg-gold shadow-sm" aria-hidden="true" />
       </div>
 
-      {/* ── Animated Gold & Navy Arrow ── */}
+      {/* ── Animated Bold Gold Arrow ── */}
       <motion.div
         className="relative flex flex-col items-center"
         animate={reduced ? {} : { y: [0, 6, 0] }}
         transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
       >
         <svg
-          width="26"
-          height="48"
-          viewBox="0 0 26 48"
+          width="28"
+          height="50"
+          viewBox="0 0 28 50"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           aria-hidden="true"
@@ -183,30 +188,30 @@ const ScrollIndicator: React.FC = () => {
         >
           {/* Static track */}
           <line
-            x1="13"
+            x1="14"
             y1="2"
-            x2="13"
+            x2="14"
             y2="34"
-            stroke="#C6922E"
-            strokeWidth="1.8"
+            stroke="#B88A3B"
+            strokeWidth="2.4"
             strokeLinecap="round"
-            strokeOpacity="0.4"
+            strokeOpacity="0.45"
           />
 
           {/* Animated drawing shaft */}
           {!reduced && (
             <motion.line
-              x1="13"
+              x1="14"
               y1="2"
-              x2="13"
+              x2="14"
               y2="34"
-              stroke="#C6922E"
-              strokeWidth="2.2"
+              stroke="#B88A3B"
+              strokeWidth="2.8"
               strokeLinecap="round"
               initial={{ pathLength: 0, opacity: 0 }}
               animate={{
                 pathLength: [0, 1, 1, 0],
-                opacity: [0.3, 1, 1, 0],
+                opacity: [0.4, 1, 1, 0],
               }}
               transition={{
                 duration: 2,
@@ -220,14 +225,14 @@ const ScrollIndicator: React.FC = () => {
           {/* Traveling gold pulse dot */}
           {!reduced && (
             <motion.circle
-              cx="13"
+              cx="14"
               cy="4"
-              r="3"
+              r="3.5"
               fill="#C6922E"
               animate={{
                 cy: [4, 32, 32],
                 opacity: [0, 1, 0],
-                r: [2.5, 3.5, 1],
+                r: [3, 4.2, 1.5],
               }}
               transition={{
                 duration: 2,
@@ -238,23 +243,23 @@ const ScrollIndicator: React.FC = () => {
             />
           )}
 
-          {/* Main Gold Arrowhead */}
+          {/* Primary Gold Arrowhead */}
           <path
-            d="M7 28L13 36L19 28"
-            stroke="#C6922E"
-            strokeWidth="2.2"
+            d="M7 26L14 35L21 26"
+            stroke="#B88A3B"
+            strokeWidth="2.8"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
 
-          {/* Secondary Navy Chevron */}
+          {/* Secondary Gold Chevron */}
           <path
-            d="M8 36L13 42L18 36"
-            stroke="#0D315A"
-            strokeWidth="1.8"
+            d="M8 35L14 43L20 35"
+            stroke="#D4A843"
+            strokeWidth="2.4"
             strokeLinecap="round"
             strokeLinejoin="round"
-            opacity="0.85"
+            opacity="0.9"
           />
         </svg>
       </motion.div>
