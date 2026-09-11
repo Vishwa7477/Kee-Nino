@@ -293,7 +293,7 @@ export const Hero: React.FC = () => {
     <section
       id="home"
       ref={containerRef}
-      className="relative min-h-screen flex flex-col justify-between items-center overflow-hidden"
+      className="hero-section relative w-full flex flex-col items-center justify-between overflow-hidden"
       style={{ background: '#F7F1E5' }}
       aria-label="Wedding invitation hero"
     >
@@ -340,7 +340,7 @@ export const Hero: React.FC = () => {
       {/* Temple silhouette — anchored flush to the bottom ending */}
       <motion.div
         className="absolute bottom-0 left-0 right-0 pointer-events-none z-0 flex items-end justify-center overflow-hidden"
-        style={{ height: 'clamp(50px, 10vh, 100px)', y: reduced ? 0 : bgY }}
+        style={{ height: 'clamp(55px, 11vh, 105px)', y: reduced ? 0 : bgY }}
         aria-hidden="true"
       >
         <TempleSilhouette opacity={0.065} className="w-full h-full object-cover object-bottom" />
@@ -372,130 +372,133 @@ export const Hero: React.FC = () => {
       <GoldParticles count={18} className="z-5" />
       <PetalParticles count={16} className="z-5" />
 
-      {/* Main content */}
+      {/* Main content — distributed across the full viewport height */}
       <motion.div
-        className="relative z-20 text-center px-4 pt-10 pb-4 sm:pt-14 sm:pb-6 md:py-16 flex flex-col items-center justify-center flex-1 my-auto w-full max-w-4xl"
+        className="relative z-20 text-center px-4 pt-8 pb-3 sm:pt-12 sm:pb-6 md:py-16 flex flex-col items-center justify-between flex-1 w-full max-w-4xl min-h-[100svh] md:min-h-screen"
         style={{ y: reduced ? 0 : textY }}
       >
-        {/* Date eyebrow */}
-        <motion.p
-          className="eyebrow text-gold mb-3 md:mb-4"
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          transition={{ duration: 0.8, ease: 'easeOut', ...stagger(0) }}
-        >
-          {COPY.hero.eyebrow}
-        </motion.p>
-
-        {/* Decorative line */}
-        <motion.div
-          className="flex items-center gap-3 mb-3 md:mb-5"
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          transition={{ duration: 0.7, ease: 'easeOut', ...stagger(1) }}
-          aria-hidden="true"
-        >
-          <div className="w-8 md:w-10 h-px bg-gold/40" />
-          <div className="w-1.5 h-1.5 rotate-45 bg-gold/60" />
-          <div className="w-8 md:w-10 h-px bg-gold/40" />
-        </motion.div>
-
-        {/* Groom name */}
-        <div className="overflow-hidden mb-1 md:mb-2">
-          <motion.h1
-            className="font-display font-light text-navy leading-none tracking-wide"
-            style={{ fontSize: 'clamp(2.6rem, 11vw, 7.5rem)' }}
-            initial={{ y: '110%' }}
-            animate={{ y: '0%' }}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], ...stagger(2) }}
+        {/* Top block: Eyebrow + Names + Details */}
+        <div className="flex flex-col items-center w-full">
+          {/* Date eyebrow */}
+          <motion.p
+            className="eyebrow text-gold mb-2.5 md:mb-4"
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
+            transition={{ duration: 0.8, ease: 'easeOut', ...stagger(0) }}
           >
-            {WEDDING.groom.name}
-          </motion.h1>
-        </div>
+            {COPY.hero.eyebrow}
+          </motion.p>
 
-        {/* Ampersand */}
-        <div className="overflow-hidden mb-1 md:mb-2">
-          <motion.span
-            className="font-script text-gold block leading-none"
-            style={{ fontSize: 'clamp(2.6rem, 12vw, 8rem)' }}
-            initial={{ y: '110%' }}
-            animate={{ y: '0%' }}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], ...stagger(3) }}
+          {/* Decorative line */}
+          <motion.div
+            className="flex items-center gap-3 mb-2.5 md:mb-5"
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
+            transition={{ duration: 0.7, ease: 'easeOut', ...stagger(1) }}
             aria-hidden="true"
           >
-            &amp;
-          </motion.span>
-        </div>
+            <div className="w-8 md:w-10 h-px bg-gold/40" />
+            <div className="w-1.5 h-1.5 rotate-45 bg-gold/60" />
+            <div className="w-8 md:w-10 h-px bg-gold/40" />
+          </motion.div>
 
-        {/* Bride name */}
-        <div className="overflow-hidden mb-3 md:mb-5">
-          <motion.h1
-            className="font-display font-light text-navy leading-none tracking-wide"
-            style={{ fontSize: 'clamp(2.6rem, 11vw, 7.5rem)' }}
-            initial={{ y: '110%' }}
-            animate={{ y: '0%' }}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], ...stagger(4) }}
-          >
-            {WEDDING.bride.name}
-          </motion.h1>
-        </div>
-
-        {/* OrnamentDivider */}
-        <motion.div
-          className="w-full max-w-xs md:max-w-sm mb-3 md:mb-5"
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          transition={{ duration: 0.7, ease: 'easeOut', ...stagger(5) }}
-          aria-hidden="true"
-        >
-          <OrnamentDivider />
-        </motion.div>
-
-        {/* Are getting married */}
-        <motion.p
-          className="font-body text-brown/55 tracking-[0.25em] md:tracking-[0.3em] uppercase mb-2 md:mb-3"
-          style={{ fontSize: 'clamp(0.58rem, 1.8vw, 0.72rem)' }}
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          transition={{ duration: 0.8, ease: 'easeOut', ...stagger(6) }}
-        >
-          {COPY.hero.tagline}
-        </motion.p>
-
-        {/* Time & venue block */}
-        <motion.div
-          className="flex flex-col items-center gap-1.5 md:gap-2"
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          transition={{ duration: 0.8, ease: 'easeOut', ...stagger(7) }}
-        >
-          <p
-            className="font-display text-navy/70 italic"
-            style={{ fontSize: 'clamp(0.9rem, 2.6vw, 1.25rem)' }}
-          >
-            {COPY.hero.time}
-          </p>
-          <div className="flex items-center gap-2" aria-hidden="true">
-            <div className="w-4 h-px bg-gold/40" />
-            <div className="w-1 h-1 rotate-45 bg-gold/50" />
-            <div className="w-4 h-px bg-gold/40" />
+          {/* Groom name */}
+          <div className="overflow-hidden mb-0.5 md:mb-2">
+            <motion.h1
+              className="font-display font-light text-navy leading-none tracking-wide"
+              style={{ fontSize: 'clamp(2.6rem, 11vw, 7.5rem)' }}
+              initial={{ y: '110%' }}
+              animate={{ y: '0%' }}
+              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], ...stagger(2) }}
+            >
+              {WEDDING.groom.name}
+            </motion.h1>
           </div>
-          <p
-            className="font-body text-brown/60 tracking-[0.16em] uppercase"
-            style={{ fontSize: 'clamp(0.6rem, 1.6vw, 0.72rem)' }}
-          >
-            {COPY.hero.venue}
-          </p>
-        </motion.div>
 
-        {/* ── Hero countdown ── */}
+          {/* Ampersand */}
+          <div className="overflow-hidden mb-0.5 md:mb-2">
+            <motion.span
+              className="font-script text-gold block leading-none"
+              style={{ fontSize: 'clamp(2.6rem, 12vw, 8rem)' }}
+              initial={{ y: '110%' }}
+              animate={{ y: '0%' }}
+              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], ...stagger(3) }}
+              aria-hidden="true"
+            >
+              &amp;
+            </motion.span>
+          </div>
+
+          {/* Bride name */}
+          <div className="overflow-hidden mb-2.5 md:mb-5">
+            <motion.h1
+              className="font-display font-light text-navy leading-none tracking-wide"
+              style={{ fontSize: 'clamp(2.6rem, 11vw, 7.5rem)' }}
+              initial={{ y: '110%' }}
+              animate={{ y: '0%' }}
+              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], ...stagger(4) }}
+            >
+              {WEDDING.bride.name}
+            </motion.h1>
+          </div>
+
+          {/* OrnamentDivider */}
+          <motion.div
+            className="w-full max-w-xs md:max-w-sm mb-2.5 md:mb-4"
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
+            transition={{ duration: 0.7, ease: 'easeOut', ...stagger(5) }}
+            aria-hidden="true"
+          >
+            <OrnamentDivider />
+          </motion.div>
+
+          {/* Are getting married */}
+          <motion.p
+            className="font-body text-brown/55 tracking-[0.25em] md:tracking-[0.3em] uppercase mb-1.5 md:mb-2.5"
+            style={{ fontSize: 'clamp(0.58rem, 1.8vw, 0.72rem)' }}
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
+            transition={{ duration: 0.8, ease: 'easeOut', ...stagger(6) }}
+          >
+            {COPY.hero.tagline}
+          </motion.p>
+
+          {/* Time & venue block */}
+          <motion.div
+            className="flex flex-col items-center gap-1 md:gap-1.5"
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
+            transition={{ duration: 0.8, ease: 'easeOut', ...stagger(7) }}
+          >
+            <p
+              className="font-display text-navy/70 italic"
+              style={{ fontSize: 'clamp(0.88rem, 2.5vw, 1.25rem)' }}
+            >
+              {COPY.hero.time}
+            </p>
+            <div className="flex items-center gap-2" aria-hidden="true">
+              <div className="w-4 h-px bg-gold/40" />
+              <div className="w-1 h-1 rotate-45 bg-gold/50" />
+              <div className="w-4 h-px bg-gold/40" />
+            </div>
+            <p
+              className="font-body text-brown/60 tracking-[0.16em] uppercase"
+              style={{ fontSize: 'clamp(0.58rem, 1.5vw, 0.72rem)' }}
+            >
+              {COPY.hero.venue}
+            </p>
+          </motion.div>
+        </div>
+
+        {/* Middle block: Countdown */}
         <motion.div
-          className="mt-3 md:mt-5 mb-1 w-full flex flex-col items-center gap-2 md:gap-3"
+          className="w-full flex flex-col items-center gap-2 md:gap-3 my-2 md:my-4"
           variants={fadeUp}
           initial="hidden"
           animate="visible"
@@ -510,8 +513,8 @@ export const Hero: React.FC = () => {
           <HeroCountdown staggerDelay={0} />
         </motion.div>
 
-        {/* ── Premium scroll indicator ── */}
-        <div className="mt-2 md:mt-4 mb-2">
+        {/* Bottom block: Scroll Indicator */}
+        <div className="w-full flex flex-col items-center mb-1 sm:mb-2">
           <ScrollIndicator />
         </div>
       </motion.div>
