@@ -293,7 +293,7 @@ export const Hero: React.FC = () => {
     <section
       id="home"
       ref={containerRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex flex-col justify-between items-center overflow-hidden"
       style={{ background: '#F7F1E5' }}
       aria-label="Wedding invitation hero"
     >
@@ -340,28 +340,28 @@ export const Hero: React.FC = () => {
       {/* Temple silhouette — anchored flush to the bottom ending */}
       <motion.div
         className="absolute bottom-0 left-0 right-0 pointer-events-none z-0 flex items-end justify-center overflow-hidden"
-        style={{ height: 'clamp(65px, 12vh, 120px)', y: reduced ? 0 : bgY }}
+        style={{ height: 'clamp(50px, 10vh, 100px)', y: reduced ? 0 : bgY }}
         aria-hidden="true"
       >
-        <TempleSilhouette opacity={0.06} className="w-full h-full object-cover object-bottom" />
+        <TempleSilhouette opacity={0.065} className="w-full h-full object-cover object-bottom" />
       </motion.div>
 
       {/* Floral corners */}
-      <div className="absolute left-0 bottom-0 w-36 md:w-60 lg:w-72 pointer-events-none z-10" aria-hidden="true">
+      <div className="absolute left-0 bottom-0 w-32 sm:w-44 md:w-60 lg:w-72 pointer-events-none z-10" aria-hidden="true">
         <FloralCornerLeft opacity={0.7} />
       </div>
-      <div className="absolute right-0 bottom-0 w-36 md:w-60 lg:w-72 pointer-events-none z-10" aria-hidden="true">
+      <div className="absolute right-0 bottom-0 w-32 sm:w-44 md:w-60 lg:w-72 pointer-events-none z-10" aria-hidden="true">
         <FloralCornerRight opacity={0.7} />
       </div>
       <div
-        className="absolute left-0 top-0 w-32 md:w-48 pointer-events-none z-10"
+        className="absolute left-0 top-0 w-28 sm:w-36 md:w-48 pointer-events-none z-10"
         style={{ transform: 'scaleY(-1)' }}
         aria-hidden="true"
       >
         <FloralCornerLeft opacity={0.35} />
       </div>
       <div
-        className="absolute right-0 top-0 w-32 md:w-48 pointer-events-none z-10"
+        className="absolute right-0 top-0 w-28 sm:w-36 md:w-48 pointer-events-none z-10"
         style={{ transform: 'scaleY(-1)' }}
         aria-hidden="true"
       >
@@ -374,12 +374,12 @@ export const Hero: React.FC = () => {
 
       {/* Main content */}
       <motion.div
-        className="relative z-20 text-center px-6 py-14 md:py-20 flex flex-col items-center"
+        className="relative z-20 text-center px-4 pt-10 pb-4 sm:pt-14 sm:pb-6 md:py-16 flex flex-col items-center justify-center flex-1 my-auto w-full max-w-4xl"
         style={{ y: reduced ? 0 : textY }}
       >
         {/* Date eyebrow */}
         <motion.p
-          className="eyebrow text-gold mb-5"
+          className="eyebrow text-gold mb-3 md:mb-4"
           variants={fadeUp}
           initial="hidden"
           animate="visible"
@@ -390,23 +390,23 @@ export const Hero: React.FC = () => {
 
         {/* Decorative line */}
         <motion.div
-          className="flex items-center gap-3 mb-5 md:mb-6"
+          className="flex items-center gap-3 mb-3 md:mb-5"
           variants={fadeUp}
           initial="hidden"
           animate="visible"
           transition={{ duration: 0.7, ease: 'easeOut', ...stagger(1) }}
           aria-hidden="true"
         >
-          <div className="w-10 h-px bg-gold/40" />
+          <div className="w-8 md:w-10 h-px bg-gold/40" />
           <div className="w-1.5 h-1.5 rotate-45 bg-gold/60" />
-          <div className="w-10 h-px bg-gold/40" />
+          <div className="w-8 md:w-10 h-px bg-gold/40" />
         </motion.div>
 
         {/* Groom name */}
-        <div className="overflow-hidden mb-2">
+        <div className="overflow-hidden mb-1 md:mb-2">
           <motion.h1
             className="font-display font-light text-navy leading-none tracking-wide"
-            style={{ fontSize: 'clamp(3rem, 12vw, 8rem)' }}
+            style={{ fontSize: 'clamp(2.6rem, 11vw, 7.5rem)' }}
             initial={{ y: '110%' }}
             animate={{ y: '0%' }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], ...stagger(2) }}
@@ -416,10 +416,10 @@ export const Hero: React.FC = () => {
         </div>
 
         {/* Ampersand */}
-        <div className="overflow-hidden mb-2">
+        <div className="overflow-hidden mb-1 md:mb-2">
           <motion.span
             className="font-script text-gold block leading-none"
-            style={{ fontSize: 'clamp(3rem, 14vw, 9rem)' }}
+            style={{ fontSize: 'clamp(2.6rem, 12vw, 8rem)' }}
             initial={{ y: '110%' }}
             animate={{ y: '0%' }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], ...stagger(3) }}
@@ -430,10 +430,10 @@ export const Hero: React.FC = () => {
         </div>
 
         {/* Bride name */}
-        <div className="overflow-hidden mb-5 md:mb-6">
+        <div className="overflow-hidden mb-3 md:mb-5">
           <motion.h1
             className="font-display font-light text-navy leading-none tracking-wide"
-            style={{ fontSize: 'clamp(3rem, 12vw, 8rem)' }}
+            style={{ fontSize: 'clamp(2.6rem, 11vw, 7.5rem)' }}
             initial={{ y: '110%' }}
             animate={{ y: '0%' }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], ...stagger(4) }}
@@ -444,7 +444,7 @@ export const Hero: React.FC = () => {
 
         {/* OrnamentDivider */}
         <motion.div
-          className="w-full max-w-xs md:max-w-sm mb-5 md:mb-6"
+          className="w-full max-w-xs md:max-w-sm mb-3 md:mb-5"
           variants={fadeUp}
           initial="hidden"
           animate="visible"
@@ -456,8 +456,8 @@ export const Hero: React.FC = () => {
 
         {/* Are getting married */}
         <motion.p
-          className="font-body text-brown/55 tracking-[0.3em] uppercase mb-4"
-          style={{ fontSize: 'clamp(0.6rem, 2vw, 0.75rem)' }}
+          className="font-body text-brown/55 tracking-[0.25em] md:tracking-[0.3em] uppercase mb-2 md:mb-3"
+          style={{ fontSize: 'clamp(0.58rem, 1.8vw, 0.72rem)' }}
           variants={fadeUp}
           initial="hidden"
           animate="visible"
@@ -468,7 +468,7 @@ export const Hero: React.FC = () => {
 
         {/* Time & venue block */}
         <motion.div
-          className="flex flex-col items-center gap-2"
+          className="flex flex-col items-center gap-1.5 md:gap-2"
           variants={fadeUp}
           initial="hidden"
           animate="visible"
@@ -476,7 +476,7 @@ export const Hero: React.FC = () => {
         >
           <p
             className="font-display text-navy/70 italic"
-            style={{ fontSize: 'clamp(0.95rem, 3vw, 1.3rem)' }}
+            style={{ fontSize: 'clamp(0.9rem, 2.6vw, 1.25rem)' }}
           >
             {COPY.hero.time}
           </p>
@@ -486,8 +486,8 @@ export const Hero: React.FC = () => {
             <div className="w-4 h-px bg-gold/40" />
           </div>
           <p
-            className="font-body text-brown/60 tracking-[0.18em] uppercase"
-            style={{ fontSize: 'clamp(0.65rem, 1.8vw, 0.75rem)' }}
+            className="font-body text-brown/60 tracking-[0.16em] uppercase"
+            style={{ fontSize: 'clamp(0.6rem, 1.6vw, 0.72rem)' }}
           >
             {COPY.hero.venue}
           </p>
@@ -495,7 +495,7 @@ export const Hero: React.FC = () => {
 
         {/* ── Hero countdown ── */}
         <motion.div
-          className="mt-5 mb-1 w-full flex flex-col items-center gap-3"
+          className="mt-3 md:mt-5 mb-1 w-full flex flex-col items-center gap-2 md:gap-3"
           variants={fadeUp}
           initial="hidden"
           animate="visible"
@@ -511,7 +511,9 @@ export const Hero: React.FC = () => {
         </motion.div>
 
         {/* ── Premium scroll indicator ── */}
-        <ScrollIndicator />
+        <div className="mt-2 md:mt-4 mb-2">
+          <ScrollIndicator />
+        </div>
       </motion.div>
 
       {/* Bottom gold border accent */}
