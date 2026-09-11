@@ -1,0 +1,601 @@
+/* ============================================================
+   CEREMONY SECTION — Premium 2026 South Indian Luxury Editorial
+   Mobile primary: 390 × 844 / 412 × 915
+
+   Visual hierarchy:
+   1. Couple photo (arch) — dominant
+   2. Join Us
+   3. Vasanth & Keerthana
+   4. Date / time / venue
+   5. VK monogram (compact header)
+   6. Botanical decorations (secondary)
+   7. Better Together seal (accent badge only)
+   ============================================================ */
+
+/* ── Design tokens ─────────────────────────────────────────────── */
+.csec {
+  --c-bg:       #F7F1E5;
+  --c-ivory:    #FAF6EE;
+  --c-navy:     #0D315A;
+  --c-gold:     #C6922E;
+  --c-gold-dk:  #A87822;
+  --c-gold-pale:#F0D98A;
+  --c-muted:    #5A534C;
+  --c-bot:      #7A8E6F;
+
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  overflow-x: hidden;
+  background: var(--c-bg);
+  color: var(--c-navy);
+  scroll-margin-top: 20px;
+}
+
+/* ── Paper grain texture ─────────────────────────────────────── */
+.csec-texture {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect fill='%23777068' filter='url(%23n)' width='200' height='200'/%3E%3C/svg%3E");
+}
+
+/* ── Corner L-bracket ornaments ──────────────────────────────── */
+.csec-corner {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  pointer-events: none;
+  z-index: 2;
+}
+.csec-corner::before,
+.csec-corner::after {
+  content: '';
+  position: absolute;
+  background: var(--c-gold);
+  opacity: 0.45;
+}
+.csec-corner::before { width: 100%; height: 1px; top: 0; left: 0; }
+.csec-corner::after  { width: 1px; height: 100%; top: 0; left: 0; }
+.csec-corner--tl { top: 14px; left: 14px; }
+.csec-corner--tr { top: 14px; right: 14px; transform: rotate(90deg); }
+
+/* ═══════════════════════════════════════════════════════════════
+   COMPACT HEADER — max ~110px tall on 390px screen
+   ═══════════════════════════════════════════════════════════════ */
+.csec-hdr {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 460px;
+  margin: 0 auto;
+  padding: max(32px, env(safe-area-inset-top)) 20px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.csec-eyebrow {
+  font-family: 'Lato', sans-serif;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--c-gold-dk);
+  margin-bottom: 9px;
+}
+
+/* VK monogram — deliberately small, NOT page-dominant */
+.csec-monogram {
+  font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(36px, 9.5vw, 44px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  color: var(--c-navy);
+}
+
+.csec-together {
+  font-family: 'Lato', sans-serif;
+  font-size: 8px;
+  font-weight: 400;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--c-gold);
+  margin-top: 7px;
+  margin-bottom: 12px;
+}
+
+/* Gold rule divider */
+.csec-rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  color: var(--c-gold);
+}
+.csec-rule span {
+  flex: 1;
+  max-width: 72px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.48;
+  transform: scaleX(0);
+}
+.csec-rule span:first-child { transform-origin: right; }
+.csec-rule span:last-child  { transform-origin: left; }
+.csec-rule i {
+  width: 5px;
+  height: 5px;
+  background: currentColor;
+  transform: rotate(45deg);
+  opacity: 0;
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FULL-BLEED ARCH PHOTO BLOCK
+   ═══════════════════════════════════════════════════════════════ */
+.csec-photo-outer {
+  position: relative;
+  width: 100%;
+  overflow: visible;
+  z-index: 1;
+}
+
+/* ── Arch-clipped container ─────────────────────────────────── */
+.csec-arch-clip {
+  width: 100%;
+  height: clamp(330px, 48vh, 430px);
+  clip-path: url(#csec-arch-clip);
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.csec-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 44% 18%;
+  display: block;
+}
+.csec[data-visible='true'] .csec-photo-img {
+  animation: csec-breathe 14s ease-in-out 0.5s infinite;
+}
+@keyframes csec-breathe {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.018); }
+}
+
+/* ── Gold accent curve below arch ──────────────────────────── */
+.csec-arch-accent {
+  display: block;
+  width: 100%;
+  height: 22px;
+  margin-top: -11px;
+  position: relative;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* ── Botanical decorations ──────────────────────────────────── */
+.csec-bot {
+  position: absolute;
+  pointer-events: none;
+  color: var(--c-bot);
+  opacity: 0.62;
+  z-index: 4;
+}
+.csec-bot--left {
+  left: -6px;
+  top: 8%;
+  width: 58px;
+  height: 160px;
+  animation: csec-bot-l 10s ease-in-out infinite;
+}
+@keyframes csec-bot-l {
+  0%, 100% { transform: translateX(0px); }
+  50%       { transform: translateX(1.5px); }
+}
+.csec-bot--right {
+  right: -6px;
+  top: 4%;
+  width: 52px;
+  height: 144px;
+  animation: csec-bot-r 12s ease-in-out infinite;
+  animation-delay: -6s;
+}
+@keyframes csec-bot-r {
+  0%, 100% { transform: translateX(0px); }
+  50%       { transform: translateX(-1.5px); }
+}
+
+/* ── Better Together seal ─────────────────────────────────── */
+.csec-seal {
+  position: absolute;
+  bottom: 2px;
+  right: 14px;
+  width: 68px;
+  height: 68px;
+  max-width: 72px;
+  max-height: 72px;
+  z-index: 6;
+  background: var(--c-ivory);
+  border-radius: 50%;
+  padding: 2px;
+  box-shadow: 0 2px 10px rgba(13,49,90,0.12);
+}
+.csec-seal svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CONTENT BELOW PHOTO
+   ═══════════════════════════════════════════════════════════════ */
+.csec-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 460px;
+  margin: 0 auto;
+  padding: 16px 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* ── Join Us ──────────────────────────────────────────────── */
+.csec-headline {
+  width: 100%;
+  margin-bottom: 4px;
+}
+
+.csec-join-us {
+  font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(40px, 11vw, 54px);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: 0.02em;
+  color: var(--c-navy);
+  margin-bottom: 10px;
+}
+
+/* Ornamental divider */
+.csec-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 0 auto 12px;
+  color: var(--c-gold);
+  width: 100%;
+  max-width: 200px;
+}
+.csec-divider span {
+  flex: 1;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.55;
+  transform: scaleX(0);
+}
+.csec-divider span:first-child { transform-origin: right; }
+.csec-divider span:last-child  { transform-origin: left; }
+.csec-divider i {
+  width: 5px;
+  height: 5px;
+  background: currentColor;
+  transform: rotate(45deg);
+  opacity: 0;
+  flex-shrink: 0;
+}
+
+.csec-invite-text {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(15px, 4vw, 18px);
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--c-navy);
+  opacity: 0.78;
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+/* ── Couple names ─────────────────────────────────────────── */
+.csec-names {
+  width: 100%;
+  text-align: center;
+  margin: 14px 0 16px;
+}
+.csec-name {
+  font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(36px, 10vw, 48px);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: 0.02em;
+  color: var(--c-navy);
+}
+.csec-amp {
+  display: block;
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(30px, 8vw, 40px);
+  line-height: 1;
+  color: var(--c-gold);
+  margin: 4px 0;
+}
+
+/* ── Event info grid — 3 columns with separators ─────────── */
+.csec-event-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  align-items: center;
+  gap: 0;
+  padding: 16px 12px;
+  background: #FAF6EE;
+  border: 1px solid rgba(198,146,46,0.38);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(198,146,46,0.08), inset 0 1px 0 rgba(255,255,255,0.9);
+  margin-bottom: 20px;
+}
+.csec-event-sep {
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(198,146,46,0.45), transparent);
+  align-self: stretch;
+  margin: 2px 4px;
+}
+.csec-event-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 2px;
+  text-align: center;
+}
+.csec-icon {
+  width: 17px;
+  height: 17px;
+  color: var(--c-gold);
+  flex-shrink: 0;
+  margin-bottom: 2px;
+}
+.csec-day {
+  display: block;
+  font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(34px, 9vw, 44px);
+  font-weight: 400;
+  line-height: 0.95;
+  color: var(--c-navy);
+}
+.csec-month {
+  display: block;
+  font-family: 'Lato', sans-serif;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(198,146,46,0.85);
+  margin-top: 3px;
+}
+.csec-year {
+  display: block;
+  font-family: 'Lato', sans-serif;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: rgba(198,146,46,0.85);
+}
+.csec-event-label {
+  font-family: 'Lato', sans-serif;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(198,146,46,0.85);
+}
+.csec-event-val {
+  font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(12px, 3.2vw, 14.5px);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--c-navy);
+  line-height: 1.35;
+}
+.csec-event-val--venue {
+  font-family: 'Lato', sans-serif;
+  font-style: normal;
+  font-size: clamp(9.5px, 2.5vw, 11.5px);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(36,24,18,0.75);
+  line-height: 1.4;
+}
+
+/* ── View Location button ───────────────────────────────── */
+.csec-btn-row {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.csec-loc-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: min(88%, 300px);
+  min-height: 52px;
+  background: linear-gradient(135deg, #C6922E 0%, #D8A941 50%, #B88224 100%);
+  border: 1px solid rgba(240,217,138,0.75);
+  border-radius: 100px;
+  color: #FAF6EE;
+  font-family: 'Lato', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(198, 146, 46, 0.35), inset 0 1px 0 rgba(255,255,255,0.25);
+  transition: all 250ms cubic-bezier(0.22, 1, 0.36, 1);
+  -webkit-tap-highlight-color: transparent;
+}
+.csec-loc-btn:hover {
+  background: #0D315A;
+  border-color: #C6922E;
+  color: #FAF6EE;
+  box-shadow: 0 6px 22px rgba(13,49,90,0.35), inset 0 1px 0 rgba(255,255,255,0.1);
+  transform: translateY(-2px);
+}
+.csec-loc-btn:active {
+  transform: scale(0.97);
+}
+.csec-loc-btn:focus-visible {
+  outline: 2px solid var(--c-gold);
+  outline-offset: 3px;
+}
+.csec-btn-arrow {
+  width: 22px;
+  height: 10px;
+  flex-shrink: 0;
+  color: #FAF6EE;
+  transition: transform 200ms ease, color 200ms ease;
+}
+.csec-loc-btn:hover .csec-btn-arrow {
+  transform: translateX(4px);
+  color: #F0D98A;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HERITAGE MANDAP FOOTER
+   ═══════════════════════════════════════════════════════════════ */
+.csec-heritage {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding-bottom: max(20px, env(safe-area-inset-bottom));
+}
+.csec-mandap {
+  width: 100%;
+  max-width: 340px;
+  height: auto;
+  opacity: 0.07;
+}
+.csec-celebrate {
+  font-family: 'Lato', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--c-gold-dk);
+  opacity: 0.55;
+  text-align: center;
+  padding-bottom: 4px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SCROLL-ENTRANCE ANIMATIONS
+   ═══════════════════════════════════════════════════════════════ */
+.csec-anim {
+  opacity: 0;
+  transform: translateY(10px);
+}
+.csec[data-visible='true'] .csec-anim {
+  animation: csec-reveal 0.65s cubic-bezier(0.22, 0.61, 0.36, 1) var(--d, 0s) both;
+}
+@keyframes csec-reveal {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* gold rule lines */
+.csec[data-visible='true'] .csec-rule span,
+.csec[data-visible='true'] .csec-divider span {
+  animation: csec-line 0.45s ease calc(var(--d, 0s) + 0.08s) both;
+}
+.csec[data-visible='true'] .csec-rule i,
+.csec[data-visible='true'] .csec-divider i {
+  animation: csec-diamond 0.3s ease calc(var(--d, 0s) + 0.12s) both;
+}
+@keyframes csec-line    { to { transform: scaleX(1); } }
+@keyframes csec-diamond { to { opacity: 0.82; } }
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE — 360px narrowest mobile
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-width: 374px) {
+  .csec-arch-clip  { height: clamp(300px, 46vh, 370px); }
+  .csec-seal       { width: 60px; height: 60px; right: 10px; }
+  .csec-bot--left  { width: 50px; height: 140px; left: -4px; }
+  .csec-bot--right { width: 46px; height: 128px; right: -4px; }
+  .csec-event-grid { padding: 12px 6px; }
+  .csec-event-val  { font-size: 10px; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE — Short screens (< 720px height)
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-height: 720px) and (max-width: 767px) {
+  .csec-hdr        { padding-top: max(30px, env(safe-area-inset-top)); }
+  .csec-arch-clip  { height: clamp(280px, 42vh, 360px); }
+  .csec-monogram   { font-size: clamp(32px, 9vw, 40px); }
+  .csec-names      { margin: 12px 0 14px; }
+  .csec-heritage   { padding-bottom: max(16px, env(safe-area-inset-bottom)); }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE — Tablet ≥ 640px
+   ═══════════════════════════════════════════════════════════════ */
+@media (min-width: 640px) {
+  .csec-hdr        { max-width: 580px; padding-left: 32px; padding-right: 32px; }
+  .csec-content    { max-width: 580px; padding-left: 32px; padding-right: 32px; }
+  .csec-arch-clip  { height: clamp(380px, 52vh, 500px); }
+  .csec-bot--left  { width: 68px; height: 190px; left: -8px; }
+  .csec-bot--right { width: 62px; height: 172px; right: -8px; }
+  .csec-seal       { width: 76px; height: 76px; max-width: 76px; max-height: 76px; right: 18px; bottom: 6px; }
+  .csec-event-grid { padding: 20px 16px; }
+}
+
+@media (min-width: 768px) {
+  .csec-hdr     { max-width: 660px; }
+  .csec-content { max-width: 660px; padding-left: 40px; padding-right: 40px; }
+  .csec-arch-clip { height: clamp(420px, 54vh, 560px); }
+  .csec-monogram  { font-size: clamp(40px, 8vw, 50px); }
+  .csec-event-grid { padding: 22px 20px; }
+  .csec-seal { width: 78px; height: 78px; max-width: 78px; max-height: 78px; right: 22px; }
+}
+
+@media (min-width: 1024px) {
+  .csec-hdr        { max-width: 740px; padding-top: 48px; }
+  .csec-content    { max-width: 740px; padding-left: 48px; padding-right: 48px; }
+  .csec-arch-clip  { height: clamp(500px, 58vh, 680px); }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ACCESSIBILITY — prefers-reduced-motion
+   ═══════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .csec *,
+  .csec *::before,
+  .csec *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .csec-anim        { opacity: 1 !important; transform: none !important; }
+  .csec-rule span,
+  .csec-divider span { transform: scaleX(1) !important; }
+  .csec-rule i,
+  .csec-divider i    { opacity: 0.82 !important; }
+  .csec-loc-btn:hover .csec-btn-arrow { transform: none !important; }
+}
