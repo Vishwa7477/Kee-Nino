@@ -23,11 +23,11 @@ export const WEDDING = {
     timezone: 'Asia/Kolkata',
   },
   venue: {
-    name: 'Vaasaan Mahal',
+    name: 'Vassan Mahal',
     city: 'Musiri',
-    fullName: 'Vaasaan Mahal, Musiri',
+    fullName: 'Vassan Mahal, Musiri',
     // Update with actual Google Maps URL when verified
-    googleMapsUrl: 'https://www.google.com/maps/search/Vaasaan+Mahal+Musiri+Tamil+Nadu',
+    googleMapsUrl: 'https://www.google.com/maps/search/Vassan+Mahal+Musiri+Tamil+Nadu',
     // If exact coordinates available, replace the search URL:
     // googleMapsUrl: 'https://www.google.com/maps/dir/?api=1&destination=LAT,LNG',
   },
@@ -69,7 +69,7 @@ export const COPY = {
     bride: 'Keerthana',
     tagline: 'Are Getting Married',
     time: '10:30 AM – 11:30 AM',
-    venue: 'Vaasaan Mahal, Musiri',
+    venue: 'Vassan Mahal, Musiri',
   },
   countdown: {
     heading: 'The Big Day Is Almost Here',
@@ -116,7 +116,7 @@ export const COPY = {
   },
   venue: {
     eyebrow: 'The Venue',
-    heading: 'Vaasaan Mahal',
+    heading: 'Vassan Mahal',
     city: 'Musiri',
     directions: 'Get Directions',
     qrHint: 'Scan for Location',

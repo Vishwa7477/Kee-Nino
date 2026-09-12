@@ -143,7 +143,7 @@ export const dogPhoto: PhotoItem = {
 
 export const venuePhoto: PhotoItem = {
   src: '',          // REPLACE WITH VENUE PHOTO — /photos/venue.webp
-  alt: 'Vaasaan Mahal, Musiri — Wedding Venue',
+  alt: 'Vassan Mahal, Musiri — Wedding Venue',
   placeholder: true,
 }
 
